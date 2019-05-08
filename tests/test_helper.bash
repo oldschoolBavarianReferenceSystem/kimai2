@@ -8,19 +8,19 @@ setup() {
 }
 
 teardown() {
-    docker_list=$(docker ps -q)
-    for docker in $docker_list; do
-        name=$(docker inspect --format='{{.Name}}' $docker)
-        trimmed=${name:1}
-        if [[ "$trimmed" == bats_* ]]; then
-            log "Stopping and removing $trimmed"
-            docker stop $trimmed || true
-            docker rm $trimmed || true
-        fi
-    done
+#    docker_list=$(docker ps -q)
+#    for docker in $docker_list; do
+#        name=$(docker inspect --format='{{.Name}}' $docker)
+#        trimmed=${name:1}
+#        if [[ "$trimmed" == bats_* ]]; then
+#            log "Stopping and removing $trimmed"
+#            docker stop $trimmed || true
+#            docker rm $trimmed || true
+#        fi
+#    done
     log -e "Output: $status\n------\n$output"
-    docker run -v $REPO_DIR:/opt/kimai --rm ubuntu chown -R $(id -u):$(id -g) /opt/kimai
-    # rm -rf $BATS_TEST_DIRNAME/bats_*
+#    docker run -v $REPO_DIR:/opt/kimai --rm ubuntu chown -R $(id -u):$(id -g) /opt/kimai
+#    # rm -rf $BATS_TEST_DIRNAME/bats_*
 }
 
 build_image() {

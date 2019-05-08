@@ -18,17 +18,12 @@ docker exec kimai2 bin/console kimai:create-user admin admin@example.com ROLE_SU
 The prod image will require an external mysql db to store the kimai data.  Pass one via the DATABASE_URL runtime argument. e.g.
 
 ```bash
-docker run -d -p 3386:3306 --name kimai_db \
-    -e MYSQL_USER=kimai_user \
-    -e MYSQL_PASSWORD=kimai_pass \
-    -e MYSQL_DATABASE=kimai_db \
-    -e MYSQL_ROOT_PASSWORD=kimai_dbroot \
-    -v kimai_mysql:/var/lib/mysql \
-    mysql
 docker run -ti -p 8001:8001 --name kimai2 \
-    -e DATABASE_URL=mysql://kimai_user:kimai_pass@localhost:3386:3306/kimai_db \
+    -e DATABASE_URL=mysql://kimai_user:kimai_pass@somehost/kimai_db \
     kimai/kimai2:prod
 ```
+
+### Docker compose
 
 ### Runtime args
 
